@@ -18,7 +18,7 @@ const BannerItem = ({ slide }) => {
       <div className="absolute flex justify-end transform -translate-y-1/2 w-2/5 left-24 top-1/2">
         <p className="text-xl text-white">
           we offer the lowest price with the highest customer experience
-          rating..plan your next tour
+          rating.. plan your next tour
         </p>
       </div>
       <div className="absolute flex justify-start transform -translate-y-1/2 w-2/5 left-24 top-3/4">
