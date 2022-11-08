@@ -8,10 +8,10 @@ const NavBar = () => {
         <Link to="/">Home</Link>
       </li>
       <li className="font-semibold">
-        <Link to="/login">Add Services</Link>
+        <Link to="/add-services">Add Services</Link>
       </li>
       <li className="font-semibold">
-        <Link to="/login">My Review</Link>
+        <Link to="/my-review">My Review</Link>
       </li>
     </>
   );
@@ -54,7 +54,9 @@ const NavBar = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-outline btn-warning">Login</button>
+        <Link to="/login">
+          <button className="btn btn-outline btn-warning">Login</button>
+        </Link>
       </div>
     </div>
   );
