@@ -22,7 +22,7 @@ const BannerItem = ({ slide }) => {
           rating.. plan your next tour
         </p>
       </div>
-      <div className="absolute flex justify-start transform -translate-y-1/2 w-2/5 left-24 top-3/4">
+      <div className="absolute flex justify-start transform -translate-y-1/2 w-2/5 left-24 top-2/3">
         <Link to="/add_services">
           <button className="btn btn-outline btn-warning">Book Now</button>
         </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../../assets/image/login.svg";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
@@ -17,8 +17,11 @@ const auth = getAuth(app);
 
 const SignUp = () => {
   const [user, setUser] = useState({});
-
   const { createUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.pathname || "/";
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -29,7 +32,10 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setUser(user);
+        form.reset();
+        navigate(from, { replace: true });
+        // console.log(user);
       })
       .catch((err) => console.error(err));
   };
@@ -47,16 +53,6 @@ const SignUp = () => {
         console.error("error: ", error);
       });
   };
-
-  // const handleSignOut = () => {
-  //   signOut(auth)
-  //     .then(() => {
-  //       setUser({});
-  //     })
-  //     .catch(() => {
-  //       setUser({})
-  //     })
-  // }
 
   return (
     <div className="hero w-full my-20">
