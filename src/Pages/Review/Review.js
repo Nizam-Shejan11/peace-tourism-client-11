@@ -84,12 +84,15 @@ const Review = () => {
         </div>
         <textarea
           name="message"
-          className="textarea textarea-bordered h-24 w-full"
-          placeholder="Your Message"
+          className="textarea textarea-bordered h-24 w-full my-4"
+          placeholder="Your Review"
           required
         ></textarea>
-
-        <input className="btn" type="submit" value="Place Your Order" />
+        <input
+          className="btn mb-4 mx-auto"
+          type="submit"
+          value="Place Your Booking"
+        />
       </form>
     </div>
   );

@@ -21,9 +21,9 @@ const NavBar = () => {
       <li className="font-semibold">
         <Link to="/add_services">Add Services</Link>
       </li>
-      {/* <li className="font-semibold">
-        <Link to="/my-review">My Review</Link>
-      </li> */}
+      <li className="font-semibold">
+        <Link to="/booking">My Booking</Link>
+      </li>
     </>
   );
 
