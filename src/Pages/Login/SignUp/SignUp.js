@@ -2,23 +2,61 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import img from "../../../assets/image/login.svg";
-// import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import { FaGoogle } from "react-icons/fa";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  // signOut,
+} from "firebase/auth";
+import { useState } from "react";
+import app from "../../../firebase/firebase.config";
+
+const auth = getAuth(app);
 
 const SignUp = () => {
-  // const { createUser } = useContext(AuthContext);
-  // const handleSignUp = (event) => {
-  //   event.preventDefault();
-  //   const form = event.target;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
+  const [user, setUser] = useState({});
 
-  //   createUser(email, password)
-  //     .then((result) => {
-  //       const user = result.user;
-  //       console.log(user);
+  const { createUser } = useContext(AuthContext);
+
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error("error: ", error);
+      });
+  };
+
+  // const handleSignOut = () => {
+  //   signOut(auth)
+  //     .then(() => {
+  //       setUser({});
   //     })
-  //     .catch((err) => console.error(err));
-  // };
+  //     .catch(() => {
+  //       setUser({})
+  //     })
+  // }
 
   return (
     <div className="hero w-full my-20">
@@ -28,8 +66,7 @@ const SignUp = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
           <h1 className="text-5xl text-center font-bold">Sign Up</h1>
-          <form className="card-body">
-            {/* onSubmit={handleSignUp} */}
+          <form onSubmit={handleSignUp} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -71,11 +108,17 @@ const SignUp = () => {
                 type="submit"
                 value="Sign Up"
               />
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn btn-outline btn-primary mt-4 font-bold"
+              >
+                <FaGoogle />
+              </button>
             </div>
           </form>
           <p className="text-center">
             Already have an account?{" "}
-            <Link className="text-orange-600 font-bold" to="/login">
+            <Link className="text-primary-600 font-bold" to="/login">
               Login
             </Link>{" "}
           </p>

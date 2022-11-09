@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import img from "../../../assets/image/login.svg";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import { FaGoogle } from "react-icons/fa";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  // signOut,
+} from "firebase/auth";
+import { useState } from "react";
+import app from "../../../firebase/firebase.config";
+
+const auth = getAuth(app);
 
 const Login = () => {
+  const [user, setUser] = useState({});
+
+  const { createUser } = useContext(AuthContext);
+
   const handleLogin = (event) => {
     event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error("error: ", error);
+      });
   };
 
   return (
@@ -38,7 +78,7 @@ const Login = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <a href="/" className="label-text-alt link link-hover">
+                <a className="label-text-alt link link-hover">
                   Forgot password?
                 </a>
               </label>
@@ -46,10 +86,16 @@ const Login = () => {
             <div className="form-control mt-6">
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-outline btn-primary mt-4 font-bold"
+            >
+              <FaGoogle />
+            </button>
           </form>
           <p className="text-center">
             New to Peace Tourism{" "}
-            <Link className="text-orange-600 font-bold" to="/signup">
+            <Link className="text-primary-600 font-bold" to="/signup">
               Sign Up
             </Link>{" "}
           </p>

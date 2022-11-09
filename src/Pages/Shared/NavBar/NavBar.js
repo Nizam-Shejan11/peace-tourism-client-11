@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import { FaImage, FaUserAlt } from "react-icons/fa";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const menuItems = (
     <>
       <li className="font-semibold">
@@ -54,8 +65,38 @@ const NavBar = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login">
-          <button className="btn btn-outline btn-warning">Login</button>
+        <Link className="items d-flex">
+          <div>
+            {user?.uid ? (
+              <div className="d-flex">
+                <Link
+                  onClick={handleLogOut}
+                  className="btn btn-outline btn-warning"
+                >
+                  Logout
+                </Link>
+                <h3 style={{ color: "orange" }}>{user?.displayName}</h3>
+              </div>
+            ) : (
+              <div className="d-flex">
+                <Link to="/login" className="btn btn-outline btn-warning">
+                  Log in
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="">
+            {user?.photoURL ? (
+              <img
+                alt=""
+                style={{ height: "30px" }}
+                roundedCircle
+                src={user?.photoURL}
+              />
+            ) : (
+              <FaUserAlt />
+            )}
+          </div>
         </Link>
       </div>
     </div>
