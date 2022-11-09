@@ -19,11 +19,11 @@ const NavBar = () => {
         <Link to="/">Home</Link>
       </li>
       <li className="font-semibold">
-        <Link to="/add-services">Add Services</Link>
+        <Link to="/add_services">Add Services</Link>
       </li>
-      <li className="font-semibold">
+      {/* <li className="font-semibold">
         <Link to="/my-review">My Review</Link>
-      </li>
+      </li> */}
     </>
   );
 
