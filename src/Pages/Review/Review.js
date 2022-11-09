@@ -51,26 +51,31 @@ const Review = () => {
   return (
     <div>
       <form onSubmit={handlePlaceBooking}>
-        <h2 className="text-4xl">You are about to booking: {packageName}</h2>
-        <h4 className="text-3xl">Price: {price}</h4>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <h2 className="text-4xl text-center">
+          You are about to booking for: <br />
+          <span>
+            {packageName}: ${price}{" "}
+          </span>
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-3/4 mx-auto  mt-4">
           <input
             name="firstName"
             type="text"
             placeholder="First Name"
-            className="input input-ghost w-full  input-bordered"
+            className="input input-ghost input-bordered"
           />
           <input
             name="lastName"
             type="text"
             placeholder="Last Name"
-            className="input input-ghost w-full  input-bordered"
+            className="input input-ghost input-bordered"
           />
           <input
             name="phone"
             type="text"
             placeholder="Your Phone"
-            className="input input-ghost w-full  input-bordered"
+            className="input input-ghost input-bordered"
             required
           />
           <input
@@ -78,21 +83,23 @@ const Review = () => {
             type="text"
             placeholder="Your email"
             defaultValue={user?.email}
-            className="input input-ghost w-full  input-bordered"
+            className="input input-ghost input-bordered"
             readOnly
           />
+          <textarea
+            name="message"
+            className="textarea textarea-bordered  h-24   my-4"
+            placeholder="Your Review"
+            required
+          ></textarea>
         </div>
-        <textarea
-          name="message"
-          className="textarea textarea-bordered h-24 w-full my-4"
-          placeholder="Your Review"
-          required
-        ></textarea>
-        <input
-          className="btn mb-4 mx-auto"
-          type="submit"
-          value="Place Your Booking"
-        />
+        <div className="text-center">
+          <input
+            className="btn mb-4 mx-auto"
+            type="submit"
+            value="Add Booking"
+          />
+        </div>
       </form>
     </div>
   );

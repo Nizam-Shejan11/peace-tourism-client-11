@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
 import AddServices from "../../Pages/AddServices/AddServices";
+import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import SignUp from "../../Pages/Login/SignUp/SignUp";
 import MyBooking from "../../Pages/MyBooking/MyBooking";
 import Review from "../../Pages/Review/Review";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,17 +20,33 @@ const router = createBrowserRouter([
       },
       {
         path: "/add_services",
-        element: <AddServices />,
+        element: (
+          <PrivateRoute>
+            <AddServices />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/review/:id",
-        element: <Review />,
+        element: (
+          <PrivateRoute>
+            <Review />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:7000/services/${params.id}`),
       },
       {
         path: "/booking",
-        element: <MyBooking />,
+        element: (
+          <PrivateRoute>
+            <MyBooking />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/login",

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
-import { FaImage, FaUserAlt } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
+import img from "../../../assets/image/peace-turism-logo-removebg-preview.png";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -23,6 +24,41 @@ const NavBar = () => {
       </li>
       <li className="font-semibold">
         <Link to="/booking">My Booking</Link>
+      </li>
+      <li className="font-semibold">
+        <Link to="/blogs">Blogs</Link>
+      </li>
+      <li className="font-semibold ">
+        <Link className="items d-flex">
+          <div>
+            {user?.uid ? (
+              <div className=" grid grid-cols-2 gap-3">
+                <Link onClick={handleLogOut}>Logout</Link>
+
+                <h3 style={{ color: "orange" }}>
+                  {" "}
+                  Welcome.. {user?.displayName}
+                </h3>
+              </div>
+            ) : (
+              <div className="d-flex">
+                <Link to="/login">Log in</Link>
+              </div>
+            )}
+          </div>
+          <div className="d-flex">
+            {user?.photoURL ? (
+              <img
+                alt=""
+                style={{ height: "30px" }}
+                roundedCircle
+                src={user?.photoURL}
+              />
+            ) : (
+              <FaUserAlt />
+            )}
+          </div>
+        </Link>
       </li>
     </>
   );
@@ -56,16 +92,16 @@ const NavBar = () => {
         </div>
         <Link
           to="/"
-          className="btn btn-ghost normal-case text-4xl w-auto h-auto"
+          className="btn  btn-active normal-case text-4xl ml-36 w-auto h-auto"
         >
-          Tour With Us
+          <img alt="" style={{ height: "70px" }} roundedCircle src={img} />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link className="items d-flex">
+        {/* <Link className="items d-flex">
           <div>
             {user?.uid ? (
               <div className="d-flex">
@@ -97,7 +133,7 @@ const NavBar = () => {
               <FaUserAlt />
             )}
           </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

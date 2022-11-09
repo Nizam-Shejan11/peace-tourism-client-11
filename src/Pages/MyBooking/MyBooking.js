@@ -57,17 +57,16 @@ const MyBooking = () => {
   return (
     <div>
       <h2 className="text-5xl text-center my-4">
-        You have {bookings.length} Orders
+        You have {bookings.length} Bookings
       </h2>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
               <th>Place & Name</th>
               <th>Price</th>
               <th>Quality</th>
-              <th></th>
+              <th>Cancel</th>
             </tr>
           </thead>
           <tbody>
