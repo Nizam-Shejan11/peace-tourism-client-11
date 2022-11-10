@@ -8,7 +8,6 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
-  // signOut,
 } from "firebase/auth";
 import { useState } from "react";
 import app from "../../../firebase/firebase.config";
@@ -17,7 +16,6 @@ const auth = getAuth(app);
 
 const Login = () => {
   const [user, setUser] = useState({});
-  const { createUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -86,9 +84,9 @@ const Login = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <a className="label-text-alt link link-hover">
+                <Link className="label-text-alt link link-hover">
                   Forgot password?
-                </a>
+                </Link>
               </label>
             </div>
             <div className="form-control mt-6">

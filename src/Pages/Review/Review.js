@@ -24,12 +24,10 @@ const Review = () => {
       message,
     };
 
-    // if(phone.length > 10){
-    //     alert('Phone number should be 10 characters or longer')
-    // }
-    // else{
-
-    // }
+    if (phone.length > 11) {
+      alert("Phone number should be 10 characters or longer");
+    } else {
+    }
 
     fetch("http://localhost:7000/bookings", {
       method: "POST",

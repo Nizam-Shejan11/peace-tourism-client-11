@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
@@ -24,6 +25,15 @@ const Services = () => {
           <ServiceCard key={service?._id} service={service}></ServiceCard>
         ))}
       </div>
+      <Link to="/add_services">
+        <div className="text-center">
+          <input
+            className="btn mb-4 mx-auto"
+            type="submit"
+            value="See All ->"
+          />
+        </div>
+      </Link>
     </div>
   );
 };
