@@ -31,10 +31,28 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const user = result.user;
-        setUser(user);
-        form.reset();
-        navigate(from, { replace: true });
-        // console.log(user);
+
+        const currentUser = {
+          email: user.email,
+        };
+
+        console.log(currentUser);
+
+        // get jwt token
+        fetch("http://localhost:7000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("genius-token", data.token);
+            form.reset();
+            navigate(from, { replace: true });
+          });
       })
       .catch((err) => console.error(err));
   };
