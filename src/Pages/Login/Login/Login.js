@@ -39,7 +39,7 @@ const Login = () => {
         console.log(currentUser);
 
         // get jwt token
-        fetch("http://localhost:7000/jwt", {
+        fetch("https://peace-tourism-server.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

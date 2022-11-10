@@ -7,7 +7,9 @@ const MyBooking = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:7000/bookings?email=${user?.email}`)
+    fetch(
+      `https://peace-tourism-server.vercel.app/bookings?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setBookings(data));
   }, [user?.email]);
@@ -17,7 +19,7 @@ const MyBooking = () => {
       "Are you sure, you want to cancel this order"
     );
     if (proceed) {
-      fetch(`http://localhost:7000/bookings/${id}`, {
+      fetch(`https://peace-tourism-server.vercel.app/bookings/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -33,7 +35,7 @@ const MyBooking = () => {
   };
 
   const handleStatusUpdate = (id) => {
-    fetch(`http://localhost:7000/bookings/${id}`, {
+    fetch(`https://peace-tourism-server.vercel.app/bookings/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

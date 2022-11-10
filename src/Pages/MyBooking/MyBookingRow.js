@@ -5,7 +5,7 @@ const MyBookingRow = ({ booking, handleDelete, handleStatusUpdate }) => {
   const [bookingService, setBookingService] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:7000/services/${service}`)
+    fetch(`https://peace-tourism-server.vercel.app/services/${service}`)
       .then((res) => res.json())
       .then((data) => setBookingService(data));
   }, [service]);

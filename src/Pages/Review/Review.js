@@ -29,7 +29,7 @@ const Review = () => {
     } else {
     }
 
-    fetch("http://localhost:7000/bookings", {
+    fetch("https://peace-tourism-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

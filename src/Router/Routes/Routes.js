@@ -35,7 +35,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:7000/services/${params.id}`),
+          fetch(
+            `https://peace-tourism-server.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/booking",
